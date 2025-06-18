@@ -1,0 +1,433 @@
+{
+  "name": "InterviewPrep",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Your Personal Interview Trainer",
+        "formDescription": "=\"Prepare Smarter, Not Harder! 🚀\"\n\nStruggling with interview prep? Get AI-generated questions tailored to your role, experience level, and difficulty preference—delivered straight to your inbox.\n\n🔹 Choose your job role & expertise level\n🔹 Set your question difficulty (Easy, Medium, Hard)\n🔹 Select technical, behavioral, or case study questions \n🔹 Get questions daily, weekly, or on-demand\n\nWhether you're a fresher or an experienced professional, this tool helps you stay sharp and confident for interviews.\n\nLet's get started—your next big opportunity awaits! 💼",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email",
+              "fieldType": "email",
+              "placeholder": "=abc12@gmail.com",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Job Role",
+              "placeholder": "ex-SDE,marketting,Web developer,Data analysr",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Experience",
+              "placeholder": "ex-fresher,mid-level,senior",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Prefered topic",
+              "placeholder": "ex-DSA, aptitude,communication,leadership etc",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Question type"
+            },
+            {
+              "fieldLabel": "Level",
+              "placeholder": "ex- easy,medium,difficult"
+            },
+            {
+              "fieldLabel": "Frequency",
+              "placeholder": "ex-daily,weekly,monthly,alternate ",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "buttonLabel": "Submit"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -360,
+        -180
+      ],
+      "id": "4e84a9fc-6757-4732-9810-bf426c320469",
+      "name": "On form submission",
+      "webhookId": "ce543c79-bfae-4e81-a287-50d756ad0d07"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Job Role-{{ $json['Job Role'] }}, experience-{{ $json.Experience }}, prefered topic-{{ $json['Prefered topic'] }}, miscellaneous questions if not specified or (if not specified){{ $json['Question type'] }} , difficulty level- {{ $json.Level }}...have to mail the content to -{{ $json.Email }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=📌 Overview\nYou are a personal interview coach, generating relevant, well-structured, and insightful questions tailored to the user’s career goals, job role, experience level, and preferences. The goal is to help candidates prepare effectively, boost confidence, and maximize their chances of landing their dream job!\n\n✨ #CrushYourInterview #AIForSuccess #CareerGrowth\n\n🌍 Context\nMany candidates struggle with finding the right questions that match their job role and industry. This AI agent provides a customizable interview practice experience using AI-generated prompts, ensuring users receive role-specific, experience-based, and difficulty-adjusted questions.\n\n💡 This system will: ✅ Generate technical, behavioral, and case-study questions 💼 ✅ Adapt to experience level (Fresher, Mid-Level, Senior) 🏆 ✅ Personalize based on selected topics (e.g., Coding, Leadership, Strategy) 🎯 ✅ Deliver questions on-demand or scheduled basis 📩\n\n🎯 #AIInterviewCoach #SmartPrep #LandYourDreamJob\n\n🔧 Instructions for AI Agent\n1️⃣ Input Handling\nThe AI should extract and process these key inputs from users:\n\nJob Role (e.g., Software Engineer, Data Analyst, Marketing Manager)\n\nExperience Level (Fresher, Mid-Level, Senior)\n\nPreferred Topics (Data Structures, Leadership, System Design, etc.)\n\nQuestion Type (Technical, Behavioral, Case Study)\n\nDifficulty Level (Easy, Medium, Hard)\n\nFrequency (Daily, Weekly, On-Demand)\n\nEmail ID (for question delivery)\n\n2️⃣ Question Generation Logic\nThe AI must dynamically generate questions based on user input:\n\nTechnical Questions → Focused on job-related problem-solving skills.\n\nBehavioral Questions → Evaluate leadership, teamwork, and adaptability.\n\nCase Study Questions → Simulate real-world business scenarios to test strategic thinking.\n\n3️⃣ Formatting & Delivery\nEnsure clear, engaging, and structured questions.\n\nIf needed, generate sample answers or guidelines.\n\nSchedule question email delivery using automation.\n\n🔥 #AIInterviewMastery #SkillsForSuccess #JobReady\n\n🛠️ Tools Used\n✅ n8n – Automation & workflow execution ✅ OpenAI API – Smart question generation ✅ Google Sheets / Database – Logging user preferences ✅ Mailgun / SMTP – Sending questions via email ✅ Switch Node – Role-based difficulty customization\n\n📡 #TechPoweredSuccess #AIForInterviews #AutomatedCareerPrep\n\n📌 Example Prompts for AI\nThe AI agent will use structured prompts to generate high-quality questions based on user input:\n\n💬 Example 1: (Mid-Level Software Engineer, Technical, Hard) 👉 \"Generate a challenging algorithmic problem for a mid-level backend developer, focusing on dynamic programming.\"\n\n💬 Example 2: (Senior Product Manager, Behavioral, Medium) 👉 \"Provide three behavioral questions that assess leadership, strategic thinking, and adaptability for a senior product manager.\"\n\n💬 Example 3: (Fresher Data Analyst, Case Study, Easy) 👉 \"Create a case study question requiring business analysis and data-driven decision-making for a fresher applying for a data analyst role.\"\n\n📌 #SharpenYourSkills #AIInterviewHelper #GrowYourCareer\n\n📖 SOP (Standard Operating Procedure)\n1️⃣ User fills out form with role, experience, and preferences. 2️⃣ AI processes inputs & selects appropriate question type. 3️⃣ AI calls OpenAI API to generate a structured question. 4️⃣ Question is formatted and sent via email or displayed on-screen. 5️⃣ User practices, submits answers, or requests more questions!\n\n🎯 #AIPractice #InterviewReady #NextBigOpportunity\n\n✨ Final Notes\n🚀 This AI-driven interview assistant makes smart interview prep accessible to everyone! 💼 Use AI’s power to land your dream job with better preparation & confidence! 🌟 Stay consistent, keep practicing, and ace those interviews like a pro!\n\n#AIInterviewCoach #CareerElevator #DreamJobUnlocked 🔥"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -108,
+        -180
+      ],
+      "id": "8c2943dd-ead9-4573-8892-4599a13bdf79",
+      "name": "AI Agent",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        40
+      ],
+      "id": "012bc063-0127-4a19-a999-29968807b6f5",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "v26EC0JGGB9qkRoa",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"to\": \"user@example.com\",\n  \"subject\": \"Your AI-Generated Interview Questions for Today\",\n  \"body\": \"Hello [User Name],\\n\\nHere are your AI-generated interview questions:\\n\\n1. [Generated Question 1]\\n2. [Generated Question 2]\\n3. [Generated Question 3]\\n\\nPractice well and get ready for your dream job! 🚀\\n\\nBest,\\nAI Interview Coach\"\n}\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        100,
+        40
+      ],
+      "id": "0e7377ed-f534-4657-ab2b-121690cd333c",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.Email }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -20,
+        40
+      ],
+      "id": "cb0ae53b-7a35-49cf-85af-d572afe9f735",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('AI Agent').item.json.output.to }}",
+        "subject": "={{ $('AI Agent').item.json.output.subject }}",
+        "emailType": "text",
+        "message": "={{ $('AI Agent').item.json.output.body }}",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "Team IntePrep"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        896,
+        -180
+      ],
+      "id": "f28239f8-9270-4f1c-a5bf-4aad6717dfea",
+      "name": "Gmail",
+      "webhookId": "3b2e8820-a6c0-41e2-b555-86c69d16fee7",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "k9PmbyBjPngC94aY",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.output.body +\"\\n\"+ $('On form submission').item.json['Prefered topic'] +\"\\n\"+$('On form submission').item.json['Question type'] +\"\\n\"+$('On form submission').item.json.Level}} ",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "SubmittedAt",
+              "description": "=date for the questions",
+              "required": true
+            },
+            {
+              "name": "Body",
+              "description": "=The questions for the day",
+              "required": true
+            },
+            {
+              "name": "Prefered topic",
+              "description": "=Topics",
+              "required": true
+            },
+            {
+              "name": "level",
+              "description": "difficulty level of the questions",
+              "required": true
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "You are an expert extraction algorithm.\nOnly extract relevant information from the text.\nIf you do not know the value of an attribute asked to extract, you may omit the attribute's value."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.1,
+      "position": [
+        300,
+        -180
+      ],
+      "id": "61f6ff5f-e1b8-4b3b-82d5-e1675ed7380f",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        388,
+        40
+      ],
+      "id": "fde86462-86ba-4b5e-9945-b3185b147112",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "v26EC0JGGB9qkRoa",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1qHYBHejDfF1pIEbidilKjR7V9h6epjCLjPlDmf4ydbQ",
+          "mode": "list",
+          "cachedResultName": "Interview Prep",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1qHYBHejDfF1pIEbidilKjR7V9h6epjCLjPlDmf4ydbQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1qHYBHejDfF1pIEbidilKjR7V9h6epjCLjPlDmf4ydbQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "SubmittedAt": "={{ $json.output.SubmittedAt }}",
+            "Body": "={{ $json.output.Body }}",
+            "Prefered topic": "={{ $json.output['Prefered topic'] }}",
+            "level": "={{ $json.output.level }}"
+          },
+          "matchingColumns": [
+            "SubmittedAt"
+          ],
+          "schema": [
+            {
+              "id": "SubmittedAt",
+              "displayName": "SubmittedAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Body",
+              "displayName": "Body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Prefered topic",
+              "displayName": "Prefered topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "level",
+              "displayName": "level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Additional notes",
+              "displayName": "Additional notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Frequency",
+              "displayName": "Frequency",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        680,
+        -180
+      ],
+      "id": "379f7849-d1ca-4e0b-80a4-53a27e9bdab4",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YlqlApCrk0g7mONj",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "pinData": {},
+  "triggerCount": 1,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}
